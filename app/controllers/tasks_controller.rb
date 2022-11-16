@@ -1,9 +1,10 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_q, only: [:index]
 
   # GET /tasks
   def index
-    @tasks = Task.all
+    @tasks = @q.result
   end
 
   # GET /tasks/1
@@ -54,5 +55,9 @@ class TasksController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def task_params
       params.require(:task).permit(:title, :description, :status, :deadline)
+    end
+
+    def set_q
+      @q = Task.ransack(params[:q])
     end
 end
