@@ -10,9 +10,9 @@
   <%= f.date_field :deadline_lteq %>
   <%= f.label :status, 'ステータス' %>
   <%= f.radio_button :status_eq, '' %>指定なし
-  <%= f.radio_button :status_eq, 'todo' %>todo
-  <%= f.radio_button :status_eq, 'doing' %>doing
-  <%= f.radio_button :status_eq, 'done' %>done
+  <%= f.radio_button :status_eq, '0' %>todo
+  <%= f.radio_button :status_eq, '1' %>doing
+  <%= f.radio_button :status_eq, '2' %>done
   <br>
   <%= f.submit '検索' %>
 <% end %>
@@ -23,7 +23,7 @@
       <th>Title</th>
       <th>description</th>
       <th>Status</th>
-      <th><%= sort_link(@q, :deadline, "Deadline") %></th>
+      <th><%= sort_link(@q, :deadline, "Deadline", default_order: :desc) %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
